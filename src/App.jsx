@@ -30,7 +30,12 @@ const App = () => {
     }
     setNotes(notes.concat(noteObject))
     setNewNote('')
-  }
+    // post new note to server to be added to db.json file
+    axios
+    .post('http://localhost:3001/notes', noteObject)
+    .then(response => {
+      console.log(response)
+    })
   const handleNoteChange = (event) => {
     console.log(event.target.value)
     setNewNote(event.target.value)
