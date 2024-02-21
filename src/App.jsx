@@ -22,6 +22,8 @@ const App = () => {
 
   // event handlers
   const addNote = (event) => {
+    // when sumbit button clicked ...
+    // create new note and add to notes array
     event.preventDefault()
     const noteObject = {
       content: newNote,
@@ -35,6 +37,8 @@ const App = () => {
     .then(response => {
       console.log(response)
     })
+  }
+ 
   const handleNoteChange = (event) => {
     console.log(event.target.value)
     setNewNote(event.target.value)
