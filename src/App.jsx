@@ -23,19 +23,19 @@ const App = () => {
   // event handlers
   const addNote = (event) => {
     // when sumbit button clicked ...
-    // create new note and add to notes array
+    // create new note
     event.preventDefault()
     const noteObject = {
       content: newNote,
       important: Math.random() < 0.5,
     }
-    setNotes(notes.concat(noteObject))
-    setNewNote('')
     // post new note to server to be added to db.json file
     axios
     .post('http://localhost:3001/notes', noteObject)
     .then(response => {
-      console.log(response)
+      // update state array notes (concat makes new copy, doesn't change original state)
+      setNotes(notes.concat(response.data))
+      setNewNote('')
     })
   }
  
