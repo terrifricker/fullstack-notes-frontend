@@ -29,12 +29,12 @@ const Footer = () => {
 }
 
 const App = () => {
-  const [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState(null)
   const [newNote, setNewNote] = useState(
     'a new note...'
   )
   const [showAll, setShowAll] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('some error happened...')
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     noteService
@@ -43,7 +43,10 @@ const App = () => {
         setNotes(intialNotes)
       })
   }, [])
-  console.log('render', notes.length, 'notes')
+
+  if (!notes) {
+    return null
+  }
 
   const handleNoteChange = (event) => {
     console.log(event.target.value)
@@ -98,10 +101,10 @@ const App = () => {
       </div>
       <ul>
         {notesToShow.map(note => 
-          <Note 
-            key={note.id} 
-            note={note} 
-            toggleImportance={() => toggleImportanceOf(note.id)}/>
+              <Note 
+                key={note.id} 
+                note={note} 
+                toggleImportance={() => toggleImportanceOf(note.id)}/>
         )}
       </ul>
       <form onSubmit={addNote}>
