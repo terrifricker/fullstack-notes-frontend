@@ -18,14 +18,12 @@ const App = () => {
   }, [])
   console.log('render', notes.length, 'notes')
 
-  // event handlers
   const handleNoteChange = (event) => {
     console.log(event.target.value)
     setNewNote(event.target.value)
   }
+
   const addNote = (event) => {
-    // when sumbit button clicked ...
-    // create new note
     event.preventDefault()
     const noteObject = {
       content: newNote,
@@ -39,9 +37,7 @@ const App = () => {
       })
   }
  
-  // other functions
   const toggleImportanceOf = (id) => {
-    const url = `http://localhost:3001/notes/${id}`
     const note = notes.find(n => n.id === id)
     const changedNote = {...note, important: !note.important}
 
